@@ -1,0 +1,82 @@
+@import '../../../../assets/scss/variables';
+.navbar {
+    height: 65px;
+    background-color: #212121;
+    padding: 0 47px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+
+
+    .navbar-brand {
+      color: $base-font-color !important;
+      margin-right: 2rem;
+      font-size: 24px;
+      text-decoration-line: none;
+    }
+
+    .navbar-nav {
+      .nav-item {
+        margin-right: 10px;
+      }
+
+      .nav-link {
+        color: $base-font-color !important;
+        font-size: 17px;
+        font-weight: 700;
+      }
+    }
+
+    .sidebar-nav-btn {
+      display: none;
+    }
+
+    @media (max-width: $breakpoint-xsmall) {
+      .sidebar-nav-btn {
+        display: block;
+        width: 35px;
+        height: 35px;
+        margin-left: 10px;
+      }
+    }
+
+    .sidebarNav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+}
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100% - 60px);
+  width: 100%;
+}
+
+.sidebarMenu {
+  margin: 10px 0;
+  position: relative;
+  a {
+    font-size: 2rem;
+    letter-spacing: 0.4px;
+    color: #fff !important;
+    margin-left: 40px;
+  }
+  img{
+    height: 25px;
+    width: 25px;
+    position: absolute;
+  }
+}
+
+.show-home-menu{
+  display: block;
+}
+
+@media(max-width: $breakpoint-xsmall){
+  .show-home-menu{
+    display: none !important;
+  }
+}

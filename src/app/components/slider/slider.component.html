@@ -1,0 +1,26 @@
+<div class="hero">
+    <ng-container *ngFor="let slider of movies; let i = index">
+        <div class="slider" *ngIf="current == i" @fade>
+            <div class="backdrop">
+                <div class="lazyloaded">
+                    <img alt="{{slider?.title}}" class="lazyload image" src="{{slider?.backdrop_path}}">
+                </div>
+            </div>
+            <div class="pane">
+                <div>
+                    <h1 class="name" (click)="redirectToMovie(slider.url)">
+                        {{slider?.title}}
+                    </h1>
+                    <div class="meta">
+                        <div class="info">
+                            <span>{{slider?.release_date | date: 'yyyy' }}</span>
+                        </div>
+                    </div>
+                    <div class="desc">
+                        {{slider?.opening_crawl }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

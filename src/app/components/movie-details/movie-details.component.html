@@ -1,0 +1,95 @@
+<app-skeleton *ngIf="isLoading"></app-skeleton>
+<div class="hero" *ngIf="!isLoading">
+    <div class="backdrop">
+        <div class="lazyloaded">
+            <img class="lazyload image" src="{{ movie?.backdrop_path }}">
+        </div>
+    </div>
+    <div class="pane">
+        <div>
+            <div class="name">{{ movie?.title }}</div>
+            <div class="meta">
+
+                <div class="info">
+                    <span>Episode {{movie?.episode_id }}</span>
+                    <span>{{movie?.release_date | date: 'yyyy' }}</span>
+                </div>
+            </div>
+            <div class="desc">{{ movie?.opening_crawl }}</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="listing__head overview-top-margin">
+                <h2 class="listing__title">Overview</h2>
+            </div>
+            <app-skeleton *ngIf="isLoading"></app-skeleton>
+            <div class="listing-space info__movies" *ngIf="!isLoading">
+                <div class="left">
+                    <div class="poster">
+                        <img src="{{ movie?.imgPath }}">
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="overview">
+                        <h2 class="title">Storyline</h2>
+                        <div>{{movie?.opening_crawl}}</div>
+                    </div>
+                    <div class="stats">
+                        <ul class="nolist">
+                            <li>
+                                <div class="label">
+                                    Released
+                                </div>
+                                <div class="value">
+                                    {{ movie?.release_date | date: 'longDate' }}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="label">
+                                    Producer
+                                </div>
+                                <div class="value">
+                                    {{ movie?.producer }}
+                                </div>
+                            </li>
+                            <li *ngIf="movie?.director">
+                                <div class="label">
+                                    Director
+                                </div>
+                                <div class="value">
+                                    ${{ movie?.director }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listing-space">
+                <div class="listing__head">
+                    <h2 class="listing__title">Cast</h2>
+                </div>
+                <app-skeleton *ngIf="isLoading"></app-skeleton>
+                <p-carousel [value]="characters" [numVisible]="6" [numScroll]="4" [circular]="false"
+                    [responsiveOptions]="responsiveOptions" *ngIf="!isLoading">
+                    <ng-template let-cast pTemplate="item">
+                        <div class="listing-item-style" (click)="redirectTocharacters(cast)">
+                            <div class="overlay">
+                                <div class="hover">Details</div>
+                            </div>
+                            <img *ngIf="cast.profile_path" src="{{ cast?.profile_path }}">
+                            <img *ngIf="!cast?.profile_path" src="assets/images/movies/poster/default-movie.png">
+                            <h6>{{ cast?.name }}</h6>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+        </div>
+    </div>
+</div>
